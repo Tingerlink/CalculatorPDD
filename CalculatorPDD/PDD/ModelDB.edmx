@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PDDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="act">
+          <Key>
+            <PropertyRef Name="code_act" />
+          </Key>
+          <Property Name="code_act" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="item_list_prohibition">
+          <Key>
+            <PropertyRef Name="code_item_list_prohibition" />
+          </Key>
+          <Property Name="code_item_list_prohibition" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code_road_sign" Type="bigint" Nullable="false" />
+          <Property Name="code_act" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="item_list_resolution">
+          <Key>
+            <PropertyRef Name="code_item_list_resolution" />
+          </Key>
+          <Property Name="code_item_list_resolution" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code_road_sign" Type="bigint" Nullable="false" />
+          <Property Name="code_act" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="road_sign">
+          <Key>
+            <PropertyRef Name="code_road_sign" />
+          </Key>
+          <Property Name="code_road_sign" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="pdd_number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="code_type_sign" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="type_road_sign">
+          <Key>
+            <PropertyRef Name="code_type_road_sign" />
+          </Key>
+          <Property Name="code_type_road_sign" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_item_list_prohibition_act">
+          <End Role="act" Type="Self.act" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_prohibition" Type="Self.item_list_prohibition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="act">
+              <PropertyRef Name="code_act" />
+            </Principal>
+            <Dependent Role="item_list_prohibition">
+              <PropertyRef Name="code_act" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_list_prohibition_road_sign1">
+          <End Role="road_sign" Type="Self.road_sign" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_prohibition" Type="Self.item_list_prohibition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="road_sign">
+              <PropertyRef Name="code_road_sign" />
+            </Principal>
+            <Dependent Role="item_list_prohibition">
+              <PropertyRef Name="code_road_sign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_list_resolution_act">
+          <End Role="act" Type="Self.act" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_resolution" Type="Self.item_list_resolution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="act">
+              <PropertyRef Name="code_act" />
+            </Principal>
+            <Dependent Role="item_list_resolution">
+              <PropertyRef Name="code_act" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_list_resolution_road_sign">
+          <End Role="road_sign" Type="Self.road_sign" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_resolution" Type="Self.item_list_resolution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="road_sign">
+              <PropertyRef Name="code_road_sign" />
+            </Principal>
+            <Dependent Role="item_list_resolution">
+              <PropertyRef Name="code_act" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_road_sign_type_road_sign">
+          <End Role="type_road_sign" Type="Self.type_road_sign" Multiplicity="1" />
+          <End Role="road_sign" Type="Self.road_sign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_road_sign">
+              <PropertyRef Name="code_type_road_sign" />
+            </Principal>
+            <Dependent Role="road_sign">
+              <PropertyRef Name="code_type_sign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PDDModelContainer">
+          <EntitySet Name="act" EntityType="Self.act" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="item_list_prohibition" EntityType="Self.item_list_prohibition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="item_list_resolution" EntityType="Self.item_list_resolution" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="road_sign" EntityType="Self.road_sign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_road_sign" EntityType="Self.type_road_sign" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_item_list_prohibition_act" Association="Self.FK_item_list_prohibition_act">
+            <End Role="act" EntitySet="act" />
+            <End Role="item_list_prohibition" EntitySet="item_list_prohibition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_list_prohibition_road_sign1" Association="Self.FK_item_list_prohibition_road_sign1">
+            <End Role="road_sign" EntitySet="road_sign" />
+            <End Role="item_list_prohibition" EntitySet="item_list_prohibition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_list_resolution_act" Association="Self.FK_item_list_resolution_act">
+            <End Role="act" EntitySet="act" />
+            <End Role="item_list_resolution" EntitySet="item_list_resolution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_list_resolution_road_sign" Association="Self.FK_item_list_resolution_road_sign">
+            <End Role="road_sign" EntitySet="road_sign" />
+            <End Role="item_list_resolution" EntitySet="item_list_resolution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_road_sign_type_road_sign" Association="Self.FK_road_sign_type_road_sign">
+            <End Role="type_road_sign" EntitySet="type_road_sign" />
+            <End Role="road_sign" EntitySet="road_sign" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="act">
+          <Key>
+            <PropertyRef Name="code_act" />
+          </Key>
+          <Property Name="code_act" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="item_list_prohibition" Relationship="Self.FK_item_list_prohibition_act" FromRole="act" ToRole="item_list_prohibition" />
+          <NavigationProperty Name="item_list_resolution" Relationship="Self.FK_item_list_resolution_act" FromRole="act" ToRole="item_list_resolution" />
+        </EntityType>
+        <EntityType Name="item_list_prohibition">
+          <Key>
+            <PropertyRef Name="code_item_list_prohibition" />
+          </Key>
+          <Property Name="code_item_list_prohibition" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code_road_sign" Type="Int64" Nullable="false" />
+          <Property Name="code_act" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="act" Relationship="Self.FK_item_list_prohibition_act" FromRole="item_list_prohibition" ToRole="act" />
+          <NavigationProperty Name="road_sign" Relationship="Self.FK_item_list_prohibition_road_sign1" FromRole="item_list_prohibition" ToRole="road_sign" />
+        </EntityType>
+        <EntityType Name="item_list_resolution">
+          <Key>
+            <PropertyRef Name="code_item_list_resolution" />
+          </Key>
+          <Property Name="code_item_list_resolution" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code_road_sign" Type="Int64" Nullable="false" />
+          <Property Name="code_act" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="act" Relationship="Self.FK_item_list_resolution_act" FromRole="item_list_resolution" ToRole="act" />
+          <NavigationProperty Name="road_sign" Relationship="Self.FK_item_list_resolution_road_sign" FromRole="item_list_resolution" ToRole="road_sign" />
+        </EntityType>
+        <EntityType Name="road_sign">
+          <Key>
+            <PropertyRef Name="code_road_sign" />
+          </Key>
+          <Property Name="code_road_sign" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pdd_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code_type_sign" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="item_list_prohibition" Relationship="Self.FK_item_list_prohibition_road_sign1" FromRole="road_sign" ToRole="item_list_prohibition" />
+          <NavigationProperty Name="item_list_resolution" Relationship="Self.FK_item_list_resolution_road_sign" FromRole="road_sign" ToRole="item_list_resolution" />
+          <NavigationProperty Name="type_road_sign" Relationship="Self.FK_road_sign_type_road_sign" FromRole="road_sign" ToRole="type_road_sign" />
+        </EntityType>
+        <EntityType Name="type_road_sign">
+          <Key>
+            <PropertyRef Name="code_type_road_sign" />
+          </Key>
+          <Property Name="code_type_road_sign" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="road_sign" Relationship="Self.FK_road_sign_type_road_sign" FromRole="type_road_sign" ToRole="road_sign" />
+        </EntityType>
+        <Association Name="FK_item_list_prohibition_act">
+          <End Role="act" Type="Self.act" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_prohibition" Type="Self.item_list_prohibition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="act">
+              <PropertyRef Name="code_act" />
+            </Principal>
+            <Dependent Role="item_list_prohibition">
+              <PropertyRef Name="code_act" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_list_resolution_act">
+          <End Role="act" Type="Self.act" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_resolution" Type="Self.item_list_resolution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="act">
+              <PropertyRef Name="code_act" />
+            </Principal>
+            <Dependent Role="item_list_resolution">
+              <PropertyRef Name="code_act" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_list_prohibition_road_sign1">
+          <End Role="road_sign" Type="Self.road_sign" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_prohibition" Type="Self.item_list_prohibition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="road_sign">
+              <PropertyRef Name="code_road_sign" />
+            </Principal>
+            <Dependent Role="item_list_prohibition">
+              <PropertyRef Name="code_road_sign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_list_resolution_road_sign">
+          <End Role="road_sign" Type="Self.road_sign" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="item_list_resolution" Type="Self.item_list_resolution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="road_sign">
+              <PropertyRef Name="code_road_sign" />
+            </Principal>
+            <Dependent Role="item_list_resolution">
+              <PropertyRef Name="code_act" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_road_sign_type_road_sign">
+          <End Role="type_road_sign" Type="Self.type_road_sign" Multiplicity="1" />
+          <End Role="road_sign" Type="Self.road_sign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_road_sign">
+              <PropertyRef Name="code_type_road_sign" />
+            </Principal>
+            <Dependent Role="road_sign">
+              <PropertyRef Name="code_type_sign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PDDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="act" EntityType="Self.act" />
+          <EntitySet Name="item_list_prohibition" EntityType="Self.item_list_prohibition" />
+          <EntitySet Name="item_list_resolution" EntityType="Self.item_list_resolution" />
+          <EntitySet Name="road_sign" EntityType="Self.road_sign" />
+          <EntitySet Name="type_road_sign" EntityType="Self.type_road_sign" />
+          <AssociationSet Name="FK_item_list_prohibition_act" Association="Self.FK_item_list_prohibition_act">
+            <End Role="act" EntitySet="act" />
+            <End Role="item_list_prohibition" EntitySet="item_list_prohibition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_list_resolution_act" Association="Self.FK_item_list_resolution_act">
+            <End Role="act" EntitySet="act" />
+            <End Role="item_list_resolution" EntitySet="item_list_resolution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_list_prohibition_road_sign1" Association="Self.FK_item_list_prohibition_road_sign1">
+            <End Role="road_sign" EntitySet="road_sign" />
+            <End Role="item_list_prohibition" EntitySet="item_list_prohibition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_list_resolution_road_sign" Association="Self.FK_item_list_resolution_road_sign">
+            <End Role="road_sign" EntitySet="road_sign" />
+            <End Role="item_list_resolution" EntitySet="item_list_resolution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_road_sign_type_road_sign" Association="Self.FK_road_sign_type_road_sign">
+            <End Role="type_road_sign" EntitySet="type_road_sign" />
+            <End Role="road_sign" EntitySet="road_sign" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PDDModelContainer" CdmEntityContainer="PDDEntities">
+          <EntitySetMapping Name="act">
+            <EntityTypeMapping TypeName="PDDModel.act">
+              <MappingFragment StoreEntitySet="act">
+                <ScalarProperty Name="code_act" ColumnName="code_act" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item_list_prohibition">
+            <EntityTypeMapping TypeName="PDDModel.item_list_prohibition">
+              <MappingFragment StoreEntitySet="item_list_prohibition">
+                <ScalarProperty Name="code_item_list_prohibition" ColumnName="code_item_list_prohibition" />
+                <ScalarProperty Name="code_road_sign" ColumnName="code_road_sign" />
+                <ScalarProperty Name="code_act" ColumnName="code_act" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item_list_resolution">
+            <EntityTypeMapping TypeName="PDDModel.item_list_resolution">
+              <MappingFragment StoreEntitySet="item_list_resolution">
+                <ScalarProperty Name="code_item_list_resolution" ColumnName="code_item_list_resolution" />
+                <ScalarProperty Name="code_road_sign" ColumnName="code_road_sign" />
+                <ScalarProperty Name="code_act" ColumnName="code_act" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="road_sign">
+            <EntityTypeMapping TypeName="PDDModel.road_sign">
+              <MappingFragment StoreEntitySet="road_sign">
+                <ScalarProperty Name="code_road_sign" ColumnName="code_road_sign" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="pdd_number" ColumnName="pdd_number" />
+                <ScalarProperty Name="code_type_sign" ColumnName="code_type_sign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_road_sign">
+            <EntityTypeMapping TypeName="PDDModel.type_road_sign">
+              <MappingFragment StoreEntitySet="type_road_sign">
+                <ScalarProperty Name="code_type_road_sign" ColumnName="code_type_road_sign" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

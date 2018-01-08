@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76CCC708-40AA-4E46-8ACC-90773EFC6A4F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PDD</RootNamespace>
+    <AssemblyName>PDD</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="act.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActRedact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActRedact.Designer.cs">
+      <DependentUpon>ActRedact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSign.Designer.cs">
+      <DependentUpon>AddSign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseRedact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseRedact.Designer.cs">
+      <DependentUpon>BaseRedact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageWorker.cs" />
+    <Compile Include="item_list_prohibition.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="item_list_resolution.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="road_sign.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SignPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SignPanel.Designer.cs">
+      <DependentUpon>SignPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="type_road_sign.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ActRedact.resx">
+      <DependentUpon>ActRedact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSign.resx">
+      <DependentUpon>AddSign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseRedact.resx">
+      <DependentUpon>BaseRedact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SignPanel.resx">
+      <DependentUpon>SignPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="ModelDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ModelDB.edmx.diagram">
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+    </None>
+    <None Include="ModelDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelDB.edmx</DependentUpon>
+      <LastGenOutput>ModelDB.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons\add.png" />
+    <Content Include="icons\application-exit_8626.png" />
+    <Content Include="icons\applications-system_4236.png" />
+    <Content Include="icons\apply.png" />
+    <Content Include="icons\apply_9644.png" />
+    <Content Include="icons\car.ico" />
+    <Content Include="icons\delete.png" />
+    <None Include="icons\exit.png" />
+    <Content Include="icons\settings.png" />
+    <Content Include="icons\unselect.png" />
+    <Content Include="icons\update.png" />
+    <Content Include="img\1_1.png" />
+    <Content Include="img\1_10.png" />
+    <Content Include="img\1_11_1.png" />
+    <Content Include="img\1_11_2.png" />
+    <Content Include="img\1_12_1.png" />
+    <Content Include="img\1_12_2.png" />
+    <Content Include="img\1_13.png" />
+    <Content Include="img\1_14.png" />
+    <Content Include="img\1_15.png" />
+    <Content Include="img\1_16.png" />
+    <Content Include="img\1_17.png" />
+    <Content Include="img\1_18.png" />
+    <Content Include="img\1_19.png" />
+    <Content Include="img\1_2.png" />
+    <Content Include="img\1_20_1.png" />
+    <Content Include="img\1_20_2.png" />
+    <Content Include="img\1_20_3.png" />
+    <Content Include="img\1_21.png" />
+    <Content Include="img\1_22.png" />
+    <Content Include="img\1_23.png" />
+    <Content Include="img\1_24.png" />
+    <Content Include="img\1_25.png" />
+    <Content Include="img\1_26.png" />
+    <Content Include="img\1_27.png" />
+    <Content Include="img\1_28.png" />
+    <Content Include="img\1_29.png" />
+    <Content Include="img\1_30.png" />
+    <Content Include="img\1_31.png" />
+    <Content Include="img\1_32.png" />
+    <Content Include="img\1_33.png" />
+    <Content Include="img\1_34_1.png" />
+    <Content Include="img\1_34_2.png" />
+    <Content Include="img\1_34_3.png" />
+    <Content Include="img\1_3_1.png" />
+    <Content Include="img\1_3_2.png" />
+    <Content Include="img\1_4_1.png" />
+    <Content Include="img\1_4_2.png" />
+    <Content Include="img\1_4_3.png" />
+    <Content Include="img\1_4_4.png" />
+    <Content Include="img\1_4_5.png" />
+    <Content Include="img\1_4_6.png" />
+    <Content Include="img\1_5.png" />
+    <Content Include="img\1_6.png" />
+    <Content Include="img\1_7.png" />
+    <Content Include="img\1_8.png" />
+    <Content Include="img\1_9.png" />
+    <Content Include="img\2_1.png" />
+    <Content Include="img\2_2.png" />
+    <Content Include="img\2_3_1.png" />
+    <Content Include="img\2_3_2.png" />
+    <Content Include="img\2_3_3.png" />
+    <Content Include="img\2_3_4.png" />
+    <Content Include="img\2_3_5.png" />
+    <Content Include="img\2_3_6.png" />
+    <Content Include="img\2_3_7.png" />
+    <Content Include="img\2_4.png" />
+    <Content Include="img\2_5.png" />
+    <Content Include="img\2_6.png" />
+    <Content Include="img\2_7.png" />
+    <Content Include="img\3_1.png" />
+    <Content Include="img\3_10.png" />
+    <Content Include="img\3_11.png" />
+    <Content Include="img\3_12.png" />
+    <Content Include="img\3_13.png" />
+    <Content Include="img\3_14.png" />
+    <Content Include="img\3_15.png" />
+    <Content Include="img\3_16.png" />
+    <Content Include="img\3_17_1.png" />
+    <Content Include="img\3_17_2.png" />
+    <Content Include="img\3_17_3.png" />
+    <Content Include="img\3_18_1.png" />
+    <Content Include="img\3_18_2.png" />
+    <Content Include="img\3_19.png" />
+    <Content Include="img\3_2.png" />
+    <Content Include="img\3_20.png" />
+    <Content Include="img\3_21.png" />
+    <Content Include="img\3_22.png" />
+    <Content Include="img\3_23.png" />
+    <Content Include="img\3_24.png" />
+    <Content Include="img\3_25.png" />
+    <Content Include="img\3_26.png" />
+    <Content Include="img\3_27.png" />
+    <Content Include="img\3_28.png" />
+    <Content Include="img\3_29.png" />
+    <Content Include="img\3_3.png" />
+    <Content Include="img\3_30.png" />
+    <Content Include="img\3_31.png" />
+    <Content Include="img\3_32.png" />
+    <Content Include="img\3_33.png" />
+    <Content Include="img\3_4.png" />
+    <Content Include="img\3_5.png" />
+    <Content Include="img\3_6.png" />
+    <Content Include="img\3_7.png" />
+    <Content Include="img\3_8.png" />
+    <Content Include="img\3_9.png" />
+    <Content Include="img\4_1_1.png" />
+    <Content Include="img\4_1_2.png" />
+    <Content Include="img\4_1_3.png" />
+    <Content Include="img\4_1_4.png" />
+    <Content Include="img\4_1_5.png" />
+    <Content Include="img\4_1_6.png" />
+    <Content Include="img\4_2_1.png" />
+    <Content Include="img\4_2_2.png" />
+    <Content Include="img\4_2_3.png" />
+    <Content Include="img\4_3.png" />
+    <Content Include="img\4_4.png" />
+    <Content Include="img\4_5.png" />
+    <Content Include="img\4_6.png" />
+    <Content Include="img\4_7.png" />
+    <Content Include="img\4_8_1.png" />
+    <Content Include="img\4_8_2.png" />
+    <Content Include="img\4_8_3.png" />
+    <Content Include="img\5_1.png" />
+    <Content Include="img\5_10.png" />
+    <Content Include="img\5_11.png" />
+    <Content Include="img\5_12.png" />
+    <Content Include="img\5_13_1.png" />
+    <Content Include="img\5_13_2.png" />
+    <Content Include="img\5_14.png" />
+    <Content Include="img\5_15_1.png" />
+    <Content Include="img\5_15_2.png" />
+    <Content Include="img\5_15_3.png" />
+    <Content Include="img\5_15_4.png" />
+    <Content Include="img\5_15_5.png" />
+    <Content Include="img\5_15_6.png" />
+    <Content Include="img\5_15_7.png" />
+    <Content Include="img\5_15_8.png" />
+    <Content Include="img\5_16.png" />
+    <Content Include="img\5_17.png" />
+    <Content Include="img\5_18.png" />
+    <Content Include="img\5_19_1.png" />
+    <Content Include="img\5_19_2.png" />
+    <Content Include="img\5_2.png" />
+    <Content Include="img\5_20.png" />
+    <Content Include="img\5_21.png" />
+    <Content Include="img\5_22.png" />
+    <Content Include="img\5_23_2.png" />
+    <Content Include="img\5_24_2.png" />
+    <Content Include="img\5_27.png" />
+    <Content Include="img\5_28.png" />
+    <Content Include="img\5_29.png" />
+    <Content Include="img\5_3.png" />
+    <Content Include="img\5_30.png" />
+    <Content Include="img\5_31.png" />
+    <Content Include="img\5_32.png" />
+    <Content Include="img\5_33.png" />
+    <Content Include="img\5_34.png" />
+    <Content Include="img\5_4.png" />
+    <Content Include="img\5_5.png" />
+    <Content Include="img\5_6.png" />
+    <Content Include="img\5_7_1.png" />
+    <Content Include="img\5_7_2.png" />
+    <Content Include="img\5_8.png" />
+    <Content Include="img\5_9.png" />
+    <Content Include="img\6_1.png" />
+    <Content Include="img\6_13.png" />
+    <Content Include="img\6_14_1.png" />
+    <Content Include="img\6_14_2.png" />
+    <Content Include="img\6_15_1.png" />
+    <Content Include="img\6_15_2.png" />
+    <Content Include="img\6_15_3.png" />
+    <Content Include="img\6_16.png" />
+    <Content Include="img\6_18_1.png" />
+    <Content Include="img\6_18_2.png" />
+    <Content Include="img\6_18_3.png" />
+    <Content Include="img\6_19_1.png" />
+    <Content Include="img\6_19_2.png" />
+    <Content Include="img\6_2.png" />
+    <Content Include="img\6_3_1.png" />
+    <Content Include="img\6_3_2.png" />
+    <Content Include="img\6_4.png" />
+    <Content Include="img\6_5.png" />
+    <Content Include="img\6_6.png" />
+    <Content Include="img\6_7.png" />
+    <Content Include="img\6_8_1.png" />
+    <Content Include="img\6_8_2.png" />
+    <Content Include="img\6_8_3.png" />
+    <Content Include="img\6_9_3.png" />
+    <Content Include="img\7_1.png" />
+    <Content Include="img\7_10.png" />
+    <Content Include="img\7_11.png" />
+    <Content Include="img\7_12.png" />
+    <Content Include="img\7_13.png" />
+    <Content Include="img\7_14.png" />
+    <Content Include="img\7_15.png" />
+    <Content Include="img\7_16.png" />
+    <Content Include="img\7_17.png" />
+    <Content Include="img\7_18.png" />
+    <Content Include="img\7_2.png" />
+    <Content Include="img\7_3.png" />
+    <Content Include="img\7_4.png" />
+    <Content Include="img\7_5.png" />
+    <Content Include="img\7_6.png" />
+    <Content Include="img\7_7.png" />
+    <Content Include="img\7_8.png" />
+    <Content Include="img\7_9.png" />
+    <Content Include="img\8_10.png" />
+    <Content Include="img\8_11.png" />
+    <Content Include="img\8_12.png" />
+    <Content Include="img\8_13.png" />
+    <Content Include="img\8_14.png" />
+    <Content Include="img\8_15.png" />
+    <Content Include="img\8_16.png" />
+    <Content Include="img\8_17.png" />
+    <Content Include="img\8_18.png" />
+    <Content Include="img\8_19.png" />
+    <Content Include="img\8_1_1.png" />
+    <Content Include="img\8_1_2.png" />
+    <Content Include="img\8_1_3.png" />
+    <Content Include="img\8_1_4.png" />
+    <Content Include="img\8_20_1.png" />
+    <Content Include="img\8_20_2.png" />
+    <Content Include="img\8_21_1.png" />
+    <Content Include="img\8_21_2.png" />
+    <Content Include="img\8_21_3.png" />
+    <Content Include="img\8_22_1.png" />
+    <Content Include="img\8_22_2.png" />
+    <Content Include="img\8_22_3.png" />
+    <Content Include="img\8_2_1.png" />
+    <Content Include="img\8_2_2.png" />
+    <Content Include="img\8_2_3.png" />
+    <Content Include="img\8_2_4.png" />
+    <Content Include="img\8_2_5.png" />
+    <Content Include="img\8_2_6.png" />
+    <Content Include="img\8_3_1.png" />
+    <Content Include="img\8_3_2.png" />
+    <Content Include="img\8_3_3.png" />
+    <Content Include="img\8_4_1.png" />
+    <Content Include="img\8_4_2.png" />
+    <Content Include="img\8_4_3.png" />
+    <Content Include="img\8_4_4.png" />
+    <Content Include="img\8_4_5.png" />
+    <Content Include="img\8_4_6.png" />
+    <Content Include="img\8_4_7.png" />
+    <Content Include="img\8_4_8.png" />
+    <Content Include="img\8_5_1.png" />
+    <Content Include="img\8_5_2.png" />
+    <Content Include="img\8_5_3.png" />
+    <Content Include="img\8_5_4.png" />
+    <Content Include="img\8_5_5.png" />
+    <Content Include="img\8_5_6.png" />
+    <Content Include="img\8_5_7.png" />
+    <Content Include="img\8_6_1.png" />
+    <Content Include="img\8_6_2.png" />
+    <Content Include="img\8_6_3.png" />
+    <Content Include="img\8_6_4.png" />
+    <Content Include="img\8_6_5.png" />
+    <Content Include="img\8_6_6.png" />
+    <Content Include="img\8_6_7.png" />
+    <Content Include="img\8_6_8.png" />
+    <Content Include="img\8_6_9.png" />
+    <Content Include="img\8_7.png" />
+    <Content Include="img\8_8.png" />
+    <Content Include="img\8_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
